@@ -12,3 +12,12 @@ import qualified Data.ByteString.Lazy as B
 import qualified Data.Text as T
 
 import Network.HTTP.Client
+
+--- models
+data File = File 
+    { id :: T.Text    
+    , hashContent :: T.Text
+    , path :: T.Text
+    , name :: T.Text
+    , date :: T.Text
+} deriving (Show,Generic)
