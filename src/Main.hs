@@ -21,3 +21,6 @@ data File = File
     , name :: T.Text
     , date :: T.Text
 } deriving (Show,Generic)
+
+instance FromJSON File
+instance ToJSON File
