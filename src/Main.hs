@@ -61,3 +61,12 @@ send s = do
   --print (response)
   let Just obj = decode (responseBody response)
   print (obj :: Object)  
+
+--- main
+main :: IO () 
+main = do
+    --files <- (decode <$> getJSON) :: IO (Maybe ListFiles)
+    --case files of
+    --    Just (ListFiles datos) -> print $ datos !! 0
+    --    _ -> putStrLn "No ..."
+    json <- getJSON
