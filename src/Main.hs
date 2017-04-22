@@ -70,3 +70,5 @@ main = do
     --    Just (ListFiles datos) -> print $ datos !! 0
     --    _ -> putStrLn "No ..."
     json <- getJSON
+    send $ RequestBodyLBS json
+    return ()
