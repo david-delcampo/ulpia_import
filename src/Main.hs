@@ -31,3 +31,10 @@ data ListFiles = ListFiles {
 
 instance FromJSON ListFiles
 instance ToJSON ListFiles
+
+--- Parse of JSON
+jsonFile :: FilePath
+jsonFile = "./test/result.json"
+
+getJSON :: IO B.ByteString
+getJSON = B.readFile jsonFile
