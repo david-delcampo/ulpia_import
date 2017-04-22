@@ -24,3 +24,10 @@ data File = File
 
 instance FromJSON File
 instance ToJSON File
+
+data ListFiles = ListFiles {
+    datos :: [File]
+} deriving (Show,Generic)
+
+instance FromJSON ListFiles
+instance ToJSON ListFiles
