@@ -42,3 +42,12 @@ getJSON = B.readFile jsonFile
 --- client HTTP
 urlServer :: String
 urlServer = "http://127.0.0.1:8000" --"http://httpbin.org/post"
+
+buildRequest :: String -> RequestBody -> IO Request
+buildRequest url body = do
+  nakedRequest <- parseUrl url
+  return (nakedRequest { 
+      method = "POST", 
+      requestBody = body,
+      requestHeaders = [("hContentType", "application/json; charset=utf-8")]
+      })
