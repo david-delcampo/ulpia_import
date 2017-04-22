@@ -1,0 +1,76 @@
+print response http://httpbin.org/post
+
+{
+  responseStatus = Status 
+    {
+      statusCode = 200, 
+      statusMessage = "OK"
+    }, 
+  responseVersion = HTTP/1.1, 
+  responseHeaders = [
+    ("Server","nginx"),
+    ("Date","Sun, 26 Feb 2017 22:30:58 GMT"),
+    ("Content-Type","application/json"),
+    ("Content-Length","310"),
+    ("Connection","keep-alive"),
+    ("Access-Control-Allow-Origin","*"),
+    ("Access-Control-Allow-Credentials","true")
+  ], 
+  responseBody = "{\n  \"args\": {}, \n  \"data\": \"kk\", \n  \"files\": {}, \n  \"form\": {}, \n  \"headers\": {\n    \"Accept-Encoding\": \"gzip\", \n    \"Content-Length\": \"2\", \n    \"Hcontenttype\": \"application/json; 
+charset=utf-8\", \n    \"Host\": \"httpbin.org\"\n  }, \n  \"json\": null, \n  \"origin\": \"88.17.42.52\", \n  \"url\": \"http://httpbin.org/pos
+t\"\n}\n", 
+  responseCookieJar = CJ 
+    {
+      expose = []
+    }, 
+  responseClose' = ResponseClose
+} 
+
+
+print (obj :: Object) de una petición a http://httpbin.org/post
+---
+
+[
+  ("origin",String "88.17.42.52"),
+  ("args",Object (fromList [])),
+  ("json",Null),
+  ("data",String "Hola"),
+  ("url",String "http://httpbin.org/post"),
+  ("headers",Object (fromList [
+    ("Accept-Encoding",String "gzip"),
+    ("Hcontenttype",String "application/json; charset=utf-8"),
+    ("Host",String "httpbin.org"),
+    ("Content-Length",String "4")
+    ])),
+  ("files",Object (fromList [])),
+  ("form",Object (fromList []))
+] 
+
+
+print respose a 127.0.0.1 / SimpleHTTPServer
+>> Irrefutable pattern failed for pattern Data.Maybe.Just obj
+---
+
+{
+  responseStatus = Status 
+    {
+      statusCode = 200, 
+      statusMessage = "OK"
+    }, 
+  responseVersion = HTTP/1.0, 
+  responseHeaders = [
+    ("Server","SimpleHTTP/0.6 Python/2.7.9"),
+    ("Date","Sun, 26 Feb 2017 22:21:11 GMT"),
+    ("Content-type","text/html")
+  ], 
+  responseBody = "<html><body><h1>hi!</h1></body></html>", 
+  responseCookieJar = CJ {expose = []}, 
+  responseClose' = ResponseClose
+}
+
+
+
+// CONCLUSIÓN
+El error: "Irrefutable pattern failed for pattern Data.Maybe.Just obj" se produce con "SimpleHTTPServer" porque da una respuesta html
+mientras que http://httpbin.org/post de una respuesta json. Podemos ver en la documnetación que decode espera un tipo json:
+https://hackage.haskell.org/package/aeson-1.1.0.0/docs/Data-Aeson.html
