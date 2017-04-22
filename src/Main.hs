@@ -51,3 +51,13 @@ buildRequest url body = do
       requestBody = body,
       requestHeaders = [("hContentType", "application/json; charset=utf-8")]
       })
+
+send :: RequestBody -> IO ()
+send s = do
+  manager <- newManager defaultManagerSettings
+  request <- buildRequest urlServer s
+  --print (request)
+  response <- httpLbs request manager
+  --print (response)
+  let Just obj = decode (responseBody response)
+  print (obj :: Object)  
