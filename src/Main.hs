@@ -38,3 +38,7 @@ jsonFile = "./test/result.json"
 
 getJSON :: IO B.ByteString
 getJSON = B.readFile jsonFile
+
+--- client HTTP
+urlServer :: String
+urlServer = "http://127.0.0.1:8000" --"http://httpbin.org/post"
