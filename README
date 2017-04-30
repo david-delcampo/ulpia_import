@@ -1,0 +1,20 @@
+
+# OBJETIVOS INICIALES
+
+El proposito inicial del programa era obtener los datos del fichero JSON generado con gohasherfile, analizar cada elemento, categorizarlo/taggearlo (para falicitar la búsqueda una vez que las aplicaciones clientes realicen peticiones sobre el backend de destino) y enviarlo al backend de destino.
+
+# IMPLEMENTACIÓN
+
+Decidi eliminar la funcionalidad de categorización/tag del código en haskell. La motivación de esta decisión, es que creo que no es el lugar apropiado. 
+
+Esa funcionalidad, una vez el sistema funcionando, fuera de esta importación/carga inicial, seguíra teniendo que realizarse, por lo que habrá que implementarlo en el backend. Hacerlo en este proyecto sería duplicar lógica y esfuerzo. La implementación debe estar en el backend, es su sitio.
+
+Con esa funcionalidad menos, la aplicación en haskell queda un poco "a medias". Solamente leerá el fichero JSON y lo enviará mediante HTTP al backend, como una importación "masiva" inical.
+
+# CONCLUSION PERSONAL
+
+Si analizamos bien, estamos utilizando haskell en los "puntos externos" a su dominio. Todo lo que hacemos son procesos impuros, lectura de disco y trabajo de red. Esto me deja con un poco sabor amargo.
+
+Como valor positivo, me ha servido para "ensuciarme" las manos en haskell, como primera toma de contacto. Después de horas de charlas, papers y discusiones con compañeros, había que bajar al barro y sentirlo en primera mano :) para empezar.
+
+
